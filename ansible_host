@@ -1,0 +1,33 @@
+#示例
+[OSEv3:children]
+masters
+nodes
+etcd
+[OSEv3:vars]
+ansible_ssh_user=root
+ansible_ssh_port=22
+deployment_type=origin
+# 跳过磁盘检查，docker存储，内存，docker镜像检查
+openshift_disable_check=disk_availability,docker_storage,memory_availability,docker_image_availability
+# 用户管理方式配置
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/users.htpasswd'}]
+# 配置master节点域名
+openshift_master_cluster_public_hostname=master.mabeyx.com
+# 集群子域名配置
+openshift_master_default_subdomain=node1.mabeyx.com
+# 开启集群监控
+openshift_metrics_install_metrics=true
+# 集群监控版本
+openshift_metrics_image_version=v3.6.0
+# 集群监控存储方式
+openshift_metrics_cassandra_storage_type=emptydir
+# 更多参数参考https://docs.openshift.org/3.6/install_config/install/advanced_install.html
+[masters]
+master.mabeyx.com
+# host group for etcd
+[etcd]
+master.mabeyx.com
+# host group for nodes, includes region info
+[nodes]
+master.mabeyx.com openshift_schedulable=true openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+node1.mabeyx.com openshift_node_labels="{'region': 'primary', 'zone': 'east'}"
