@@ -1,4 +1,4 @@
-#示例
+#示例,master节点上/etc/ansible/hosts文件
 [OSEv3:children]
 masters
 nodes

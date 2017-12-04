@@ -1,7 +1,8 @@
 #!/bin/bash
 #
 
-#该脚本用于master节点执行安装openshift前做的一个检查
+#作用：该脚本在master节点执行，用于检测各基础服务的安装情况及运行的状态
+#使用前提：所有节点都包含在/etc/ansible/hosts文件上，且master与各node间完成密钥认证
 
 echo "检查ansible是否可以控制全部节点"
 ansible all -m ping

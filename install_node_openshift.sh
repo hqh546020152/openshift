@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 
+#该脚本用于实现Openshift_node节点上必要服务的安装
 #请将"hosts"文件放在与该脚本同目录下
 
 #开启SELinux
