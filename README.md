@@ -1,3 +1,4 @@
+Openshift3.6集群搭建手册
 # openshift
 
 ansible_host为master节点上/etc/ansible/hosts文件；
